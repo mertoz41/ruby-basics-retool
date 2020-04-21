@@ -25,82 +25,87 @@ ARTICLES = [
 # Methods to generate the newsletter
 #########################
 
-def calculate_recipients(sub, unsub)
+def calculate_recipients
+  SUBSCRIBERS.select do |email|
+    binding.pry
+    present_in_unsubscribed = UNSUBSCRIBED.include?(email)
+    !present_in_unsubscribed
+  end 
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
-  var = sub - unsub
-  var 
+  
 end
 
-calculate_recipients(SUBSCRIBERS, UNSUBSCRIBED)
+
 
 def first_n_articles(number_of_articles)
-  ARTICLES.first(number_of_articles)
+  ARTICLES.first(number_of_articles.to_i)
 end
  
-def print_recipients(sub, unsub)
+def print_recipients
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
-  pp calculate_recipients(sub, unsub).join(' ,')
+  puts calculate_recipients.join(' ,')
    
  
 
 end
-print_recipients(SUBSCRIBERS, UNSUBSCRIBED)
 
 def print_one_article(article)
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
-  articles.each do |article|
-    if article["title"] == article 
-      puts article
 
 
+puts article[:title]
+puts "by: " + article[:author]
+puts article[:text]
+puts
 end
 
-#def print_many_articles(articles)
+def print_many_articles(articles)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
-#end
+  articles.each do |article|
+    print_one_article(article)
+end
 
-#def format_campus_location(campus)
- # "Flatiron #{campus["name"]}"
-#end
+def format_campus_location(campus)
+  "Flatiron #{campus[:name]}"
+end
 
-#def format_subject
- # puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
-#end
+def format_subject
+  puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
+end
 
-#def format_footer(campus)
- # "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
-#end
+def format_footer(campus)
+  "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
+end
 
-#def print_newsletter(number)
-  #puts "Generating this week's newsletter...\n\n"
+def print_newsletter(number)
+  puts "Generating this week's newsletter...\n\n"
 
-  #print "SUBJECT: "
-  #format_subject
+  print "SUBJECT: "
+  format_subject
 
-  #print "RECIPIENTS: "
-  #print_recipients
+  print "RECIPIENTS: "
+  print_recipients
 
-  #puts "\nBODY:"
-  #format_subject
-  #articles = first_n_articles(number)
-  #print_many_articles(articles)
- # puts format_footer(CAMPUS)
+  puts "\nBODY:"
+  format_subject
+  articles = first_n_articles(number)
+  print_many_articles(articles)
+  puts format_footer(CAMPUS)
+end
 
-
-#end
-
-#def run
+def run
   # We want our program to print three articles by default,
   # but we can change that number here
- # print_newsletter("3")
-#end
+  print_newsletter("3")
+end
 
 # When we run "ruby newsletter.rb" in the command line,
 # the 'run' method will be called because we're calling it below.
-#run
+run
+end 
