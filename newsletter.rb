@@ -1,7 +1,7 @@
 #########################
 # Data for the newsletter
 #########################
-
+require 'pry'
 CAMPUS = {
   "name": "DC",
   "address": "1440 G St NW, Washington, DC 20005",
@@ -18,7 +18,7 @@ ARTICLES = [
   {"author": "Dr. Crystle Kovacek Denesik", "title": "Legal", "text": "Most programs are not write-once. They are reworked and rewritten again and again in their lived. Bugs must be debugged. Changing requirements and the need for increased functionality mean the program itself may be modified on an ongoing basis. During this process, human beings must be able to read and understand the original code. It is therefore more important by far for humans to be able to understand the program than it is for the computer."},
   {"author": "Alfred Jast Hermann", "title": "Real-Estate", "text": "I didn't work hard to make Ruby perfect for everyone, because you feel differently from me. No language can be perfect for everyone. I tried to make Ruby perfect for me, but maybe it's not perfect for you. The perfect language for Guido van Rossum is probably Python."},
   {"author": "Michale Bruen Boehm", "title": "Consulting", "text": "Everyone has an individual background. Someone may come from Python, someone else may come from Perl, and they may be surprised by different aspects of the language. Then they come up to me and say, 'I was surprised by this feature of the language, so therefore Ruby violates the principle of least surprise.' Wait. Wait. The principle of least surprise is not for you only."},
-  {"author": "Tony Keeling Cartwright", "title": "Design", "text": "Often people, especially computer engineers, focus on the machines. But in fact we need to focus on humans, on how humans care about doing programming or operating the application of the machines."}
+  {"author": "Tony Keeling Cartwright", "title": "Design", "text": "Often people, especially computer engineers, focus on the machines. But in fact we need to focus on humans, on how humans care about doing programming or operating the application of the machines."},
 ]
 
 #########################
@@ -29,65 +29,78 @@ def calculate_recipients(sub, unsub)
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
   var = sub - unsub
-  var
+  var 
 end
 
 calculate_recipients(SUBSCRIBERS, UNSUBSCRIBED)
 
 def first_n_articles(number_of_articles)
-
+  ARTICLES.first(number_of_articles)
 end
-
-def print_recipients
+ 
+def print_recipients(sub, unsub)
   # Write a method that uses the output of calculate_recipients
   # and returns a list of emails separated by commas
   # Ex) "abc@email.com, def@email.com, ghi@email.com"
+  pp calculate_recipients(sub, unsub).join(' ,')
+   
+ 
+
 end
+print_recipients(SUBSCRIBERS, UNSUBSCRIBED)
 
 def print_one_article(article)
   # Write a method that will take an article hash
   # and print the title, author and text as a formatted string
   # See the README/sample output for examples
+  articles.each do |article|
+    if article["title"] == article 
+      puts article
+
+
 end
 
-def print_many_articles(articles)
+#def print_many_articles(articles)
   # Write a method that will take in an array of article hashes
   # and format each one using the print_one_article method
-end
+#end
 
-def format_campus_location(campus)
-  "Flatiron #{campus["name"]}"
-end
+#def format_campus_location(campus)
+ # "Flatiron #{campus["name"]}"
+#end
 
-def format_subject
-  puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
-end
+#def format_subject
+ # puts "#{format_campus_location(CAMPUS)} Newsletter - #{DATE}\n\n"
+#end
 
-def format_footer(campus)
-  "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
-end
+#def format_footer(campus)
+ # "Flatiron Newsletter · #{campus[:name]} · #{campus[:address]} "
+#end
 
-def print_newsletter(number)
-  puts "Generating this week's newsletter...\n\n"
+#def print_newsletter(number)
+  #puts "Generating this week's newsletter...\n\n"
 
-  print "SUBJECT: "
-  format_subject
+  #print "SUBJECT: "
+  #format_subject
 
-  print "RECIPIENTS: "
-  print_recipients
-  puts "\nBODY:"
-  format_subject
-  articles = first_n_articles(number)
-  print_many_articles(articles)
-  puts format_footer(CAMPUS)
-end
+  #print "RECIPIENTS: "
+  #print_recipients
 
-def run
+  #puts "\nBODY:"
+  #format_subject
+  #articles = first_n_articles(number)
+  #print_many_articles(articles)
+ # puts format_footer(CAMPUS)
+
+
+#end
+
+#def run
   # We want our program to print three articles by default,
   # but we can change that number here
-  print_newsletter("3")
-end
+ # print_newsletter("3")
+#end
 
 # When we run "ruby newsletter.rb" in the command line,
 # the 'run' method will be called because we're calling it below.
-run
+#run
