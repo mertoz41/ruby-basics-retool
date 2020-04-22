@@ -27,9 +27,10 @@ ARTICLES = [
 
 def calculate_recipients
   SUBSCRIBERS.select do |email|
-    binding.pry
+    
     present_in_unsubscribed = UNSUBSCRIBED.include?(email)
-    !present_in_unsubscribed
+    puts !present_in_unsubscribed
+    
   end 
   # Using the SUBSCRIBERS and UNSUBSCRIBED arrays,
   # write a method that will return an array of only the subscribers who haven't unsubscribed
@@ -39,6 +40,7 @@ end
 
 
 def first_n_articles(number_of_articles)
+  binding.pry 
   ARTICLES.first(number_of_articles.to_i)
 end
  
@@ -73,6 +75,7 @@ end
 
 def format_campus_location(campus)
   "Flatiron #{campus[:name]}"
+  
 end
 
 def format_subject
